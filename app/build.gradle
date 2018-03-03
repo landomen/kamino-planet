@@ -22,6 +22,14 @@ android {
         }
     }
 
+    flavorDimensions "default"
+    productFlavors {
+        develop {
+            buildConfigField "String", "SERVER_BASE_URL", '"http://private-84e428-starwars2.apiary-mock.com/"'
+            versionNameSuffix "-DEV"
+        }
+    }
+
     androidExtensions {
         experimental = true
     }

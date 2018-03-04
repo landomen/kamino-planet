@@ -41,15 +41,21 @@ ext{
     daggerVersion = '2.13'
     glideVersion = '4.2.0'
     roomVersion = '1.1.0-alpha3'
+    ankoVersion='0.10.4'
 }
 
 dependencies {
     // Kotlin
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
+    // Anko Commons
+    compile "org.jetbrains.anko:anko-commons:$ankoVersion"
+
     // Support libraries
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
     implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta5'
+    implementation "com.android.support:recyclerview-v7:$supportLibraryVersion"
+    implementation "com.android.support:design:$supportLibraryVersion"
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
@@ -77,5 +83,4 @@ dependencies {
     implementation "android.arch.persistence.room:runtime:$roomVersion"
     implementation "android.arch.persistence.room:rxjava2:$roomVersion"
     kapt "android.arch.persistence.room:compiler:$roomVersion"
-
 }

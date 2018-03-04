@@ -11,8 +11,8 @@ import javax.inject.Inject
  */
 class PlanetRemoteMapper @Inject constructor() : RemoteModelMapper<PlanetEntity, PlanetDto> {
 
-    override fun mapFromRemote(remote: PlanetDto): PlanetEntity {
-        return PlanetEntity(0,
+    override fun mapFromRemote(id: Int, remote: PlanetDto): PlanetEntity {
+        return PlanetEntity(id,
                 remote.name,
                 remote.rotationPeriod,
                 remote.orbitalPeriod,
@@ -22,7 +22,13 @@ class PlanetRemoteMapper @Inject constructor() : RemoteModelMapper<PlanetEntity,
                 remote.terrain,
                 remote.surfaceWater,
                 remote.population,
-                remote.residents,
+                remote.residents.map {
+                    try {
+                        it.substringAfterLast("/").toInt()
+                    } catch (e: NumberFormatException) {
+                        0
+                    }
+                },
                 remote.created,
                 remote.edited,
                 remote.imageUrl,

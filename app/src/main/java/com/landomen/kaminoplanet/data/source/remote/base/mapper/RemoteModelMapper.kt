@@ -8,6 +8,6 @@ package com.landomen.kaminoplanet.data.source.remote.base.mapper
  */
 interface RemoteModelMapper<out D, in R> {
 
-    fun mapFromRemote(remote: R): D
+    fun mapFromRemote(id: Int, remote: R): D
 
 }

@@ -16,8 +16,8 @@ import io.reactivex.Maybe
 @Dao
 interface ResidentDao {
 
-    @Query("SELECT * FROM ${DatabaseConstants.TABLE_NAME_RESIDENTS}")
-    fun getResidents(): Flowable<List<ResidentCached>>
+    @Query("SELECT * FROM ${DatabaseConstants.TABLE_NAME_RESIDENTS} WHERE planetId = :planetId")
+    fun getResidents(planetId: Int): Flowable<List<ResidentCached>>
 
     @Query("SELECT * FROM ${DatabaseConstants.TABLE_NAME_RESIDENTS} WHERE id = :residentId")
     fun getResidentById(residentId: Int): Maybe<ResidentCached>

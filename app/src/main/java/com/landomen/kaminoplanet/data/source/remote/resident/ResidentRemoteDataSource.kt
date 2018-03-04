@@ -16,7 +16,7 @@ class ResidentRemoteDataSource @Inject constructor(private val residentService: 
 
     override fun getResidentDetails(id: Int): Single<ResidentEntity> {
         return residentService.getResidentDetails(id)
-                .map { residentMapper.mapFromRemote(it) }
+                .map { residentMapper.mapFromRemote(id, it) }
     }
 
 }

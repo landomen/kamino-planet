@@ -24,7 +24,8 @@ class ResidentLocalMapper @Inject constructor() : LocalModelMapper<ResidentEntit
                 model.homeworld,
                 model.created,
                 model.edited,
-                model.imageUrl)
+                model.imageUrl,
+                model.planetId)
     }
 
     override fun mapToLocal(model: ResidentEntity): ResidentCached {
@@ -40,6 +41,7 @@ class ResidentLocalMapper @Inject constructor() : LocalModelMapper<ResidentEntit
                 model.homeworld,
                 model.created,
                 model.edited,
-                model.imageUrl)
+                model.imageUrl,
+                model.planetId)
     }
 }

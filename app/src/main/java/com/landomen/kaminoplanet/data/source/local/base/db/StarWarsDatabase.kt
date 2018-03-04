@@ -14,7 +14,7 @@ import com.landomen.kaminoplanet.data.source.local.resident.model.ResidentCached
  * Created by Domen Lanišnik on 04/03/2018.
  * domen.lanisnik@gmail.com
  */
-@Database(entities = [PlanetCached::class, ResidentCached::class], version = DatabaseConstants.DATABASE_VERSION)
+@Database(entities = [PlanetCached::class, ResidentCached::class], version = DatabaseConstants.DATABASE_VERSION, exportSchema = true)
 @TypeConverters(CustomTypeConverters::class)
 abstract class StarWarsDatabase : RoomDatabase() {
 

@@ -16,7 +16,7 @@ class PlanetRemoteDataSource @Inject constructor(private val planetService: Plan
 
     override fun getPlanetDetails(id: Int): Single<PlanetEntity> {
         return planetService.getPlanetDetails(id)
-                .map { planetMapper.mapFromRemote(it) }
+                .map { planetMapper.mapFromRemote(id, it) }
     }
 
     override fun likePlanet(id: Int): Single<Int> {

@@ -10,7 +10,7 @@ import io.reactivex.Maybe
  */
 interface ResidentLocalSource {
 
-    fun getResidents(): Flowable<List<ResidentEntity>>
+    fun getResidents(planetId: Int): Flowable<List<ResidentEntity>>
 
     fun getResident(id: Int): Maybe<ResidentEntity>
 

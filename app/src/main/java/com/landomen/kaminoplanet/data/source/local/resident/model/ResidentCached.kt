@@ -23,5 +23,6 @@ data class ResidentCached(
         val homeworld: String?,
         val created: String?,
         val edited: String?,
-        val imageUrl: String?
+        val imageUrl: String?,
+        val planetId: Int
 )

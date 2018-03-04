@@ -11,8 +11,8 @@ import javax.inject.Inject
  */
 class ResidentRemoteMapper @Inject constructor() : RemoteModelMapper<ResidentEntity, ResidentDto> {
 
-    override fun mapFromRemote(remote: ResidentDto): ResidentEntity {
-        return ResidentEntity(0,
+    override fun mapFromRemote(id: Int, remote: ResidentDto): ResidentEntity {
+        return ResidentEntity(id,
                 remote.name,
                 remote.height,
                 remote.mass,

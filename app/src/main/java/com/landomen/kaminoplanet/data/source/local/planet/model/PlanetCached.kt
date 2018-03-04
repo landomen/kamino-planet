@@ -21,7 +21,7 @@ data class PlanetCached(
         val terrain: String?,
         val surfaceWater: Double?,
         val population: Long?,
-        val residents: List<String>,
+        val residents: List<Int>,
         val created: String?,
         val edited: String?,
         val imageUrl: String?,

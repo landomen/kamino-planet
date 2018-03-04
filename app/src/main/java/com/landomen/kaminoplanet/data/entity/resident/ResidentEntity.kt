@@ -16,4 +16,5 @@ data class ResidentEntity(val id: Int,
                           val homeworld: String?,
                           val created: String?,
                           val edited: String?,
-                          val imageUrl: String?)
+                          val imageUrl: String?,
+                          val planetId: Int = 0)

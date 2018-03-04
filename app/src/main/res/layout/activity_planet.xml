@@ -7,17 +7,19 @@
     tools:context="com.landomen.kaminoplanet.presentation.planet.PlanetActivity">
 
     <ImageButton
-        android:id="@+id/planetLikeActionImageView"
+        android:id="@+id/planetLikeActionImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/space_normal"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:padding="@dimen/space_small"
         android:src="@drawable/ic_like"
         android:tint="@color/colorAccent"
-        android:background="?attr/selectableItemBackgroundBorderless"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/planetImageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/planetImageView" />
+        app:layout_constraintTop_toTopOf="@+id/planetImageView"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/planetNameTextView"
@@ -26,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_normal"
         app:layout_constraintBottom_toTopOf="@+id/planetLikesTitleTextView"
-        app:layout_constraintEnd_toStartOf="@id/planetLikeActionImageView"
+        app:layout_constraintEnd_toStartOf="@id/planetLikeActionImageButton"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/planetImageView"
         app:layout_constraintTop_toTopOf="@+id/planetImageView"
@@ -41,7 +43,7 @@
         android:layout_marginTop="@dimen/space_small"
         android:text="@string/planet_likes"
         app:layout_constraintBottom_toBottomOf="@+id/planetImageView"
-        app:layout_constraintEnd_toStartOf="@id/planetLikeActionImageView"
+        app:layout_constraintEnd_toStartOf="@id/planetLikeActionImageButton"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/planetImageView"
         app:layout_constraintTop_toBottomOf="@+id/planetNameTextView" />
@@ -95,7 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="planetRecyclerView,planetNameTextView,planetImageView"
+        app:constraint_referenced_ids="planetRecyclerView,planetNameTextView,planetImageView,planetLikesTextView,planetLikesTitleTextView"
         tools:visibility="visible" />
 
 

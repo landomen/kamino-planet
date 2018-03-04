@@ -56,8 +56,8 @@ class NetModule {
     @Singleton
     internal fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
-                .readTimeout(30, TimeUnit.SECONDS)
-                .connectTimeout(20, TimeUnit.SECONDS)
+                .readTimeout(10, TimeUnit.SECONDS)
+                .connectTimeout(10, TimeUnit.SECONDS)
                 .addInterceptor(loggingInterceptor)
                 .build()
     }

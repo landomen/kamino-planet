@@ -4,7 +4,9 @@ import com.landomen.kaminoplanet.data.entity.planet.PlanetEntity
 import com.landomen.kaminoplanet.data.repository.planet.source.PlanetLocalSource
 import com.landomen.kaminoplanet.data.source.local.base.db.StarWarsDatabase
 import com.landomen.kaminoplanet.data.source.local.planet.mapper.PlanetLocalMapper
+import com.landomen.kaminoplanet.data.source.local.planet.model.PlanetLikeCached
 import io.reactivex.Flowable
+import io.reactivex.Single
 import javax.inject.Inject
 
 /**
@@ -21,5 +23,15 @@ class PlanetLocalDataSource @Inject constructor(private val database: StarWarsDa
 
     override fun savePlanet(planet: PlanetEntity) {
         database.planetDao().insertPlanet(mapper.mapToLocal(planet))
+    }
+
+    override fun savePlanetAsLiked(planetId: Int) {
+        database.planetDao().insertPlanetLike(PlanetLikeCached(planetId, true))
+    }
+
+    override fun isPlanetLiked(planetId: Int): Single<Boolean> {
+        return Single.defer {
+            Single.just(database.planetDao().getPlanetLike(planetId)?.liked ?: false)
+        }
     }
 }

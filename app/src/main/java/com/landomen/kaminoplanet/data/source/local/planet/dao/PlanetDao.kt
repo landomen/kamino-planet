@@ -6,6 +6,7 @@ import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import com.landomen.kaminoplanet.data.source.local.base.constants.DatabaseConstants
 import com.landomen.kaminoplanet.data.source.local.planet.model.PlanetCached
+import com.landomen.kaminoplanet.data.source.local.planet.model.PlanetLikeCached
 import io.reactivex.Flowable
 
 /**
@@ -20,5 +21,11 @@ interface PlanetDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPlanet(planet: PlanetCached)
+
+    @Query("SELECT * FROM ${DatabaseConstants.TABLE_NAME_PLANETS_LIKED} WHERE planetId = :planetId")
+    fun getPlanetLike(planetId: Int): PlanetLikeCached?
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertPlanetLike(planetLikeCached: PlanetLikeCached)
 
 }

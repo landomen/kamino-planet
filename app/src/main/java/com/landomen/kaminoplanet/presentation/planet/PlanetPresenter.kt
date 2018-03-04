@@ -41,23 +41,60 @@ class PlanetPresenter @Inject constructor(private val planetRepository: PlanetRe
         view?.openImagePreview(planetEntity?.imageUrl)
     }
 
+    override fun onPlanetLikeClicked() {
+        view?.showDataLoading()
+        view?.togglePlanetLikeButton(false)
+        planetRepository.likePlanet(planetEntity?.id ?: 0)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    onPlanetLikedSuccessfully(it)
+                }, {
+                    onPlanetLikedError(it)
+                })
+                .addTo(compositeDisposable)
+    }
+
     private fun fetchPlanetDetails(planetId: Int) {
+        view?.showDataLoading()
         planetRepository.getPlanet(planetId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    view?.displayPlanetName(it.name ?: "-")
-                    view?.displayPlanetLikesCount(it.likesCount)
-                    it.imageUrl?.let {
-                        view?.displayPlanetImage(it)
-                    }
-                    view?.displayPlanetDetails(createPlanetDetails(it))
-                    view?.hideDataLoading()
-                    planetEntity = it
+                    onPlanetDetailsFetched(it)
+                    fetchPlanetLikeStatus(planetId)
                 }, {
-
+                    onPlanetDetailsFetchError(it)
                 })
                 .addTo(compositeDisposable)
+    }
+
+    private fun fetchPlanetLikeStatus(planetId: Int) {
+        planetRepository.hasUserLikedPlanet(planetId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ liked ->
+                    view?.togglePlanetLikeButton(!liked)
+                }, {
+                    view?.togglePlanetLikeButton(false)
+                })
+                .addTo(compositeDisposable)
+    }
+
+    private fun onPlanetDetailsFetched(planetEntity: PlanetEntity) {
+        view?.displayPlanetName(planetEntity.name ?: "-")
+        view?.displayPlanetLikesCount(planetEntity.likesCount)
+        planetEntity.imageUrl?.let {
+            view?.displayPlanetImage(it)
+        }
+        view?.displayPlanetDetails(createPlanetDetails(planetEntity))
+        view?.hideDataLoading()
+        this.planetEntity = planetEntity
+    }
+
+    private fun onPlanetDetailsFetchError(throwable: Throwable) {
+        throwable.printStackTrace()
+        view?.displayError()
     }
 
     private fun createPlanetDetails(planet: PlanetEntity): List<TitleValue> {
@@ -75,6 +112,20 @@ class PlanetPresenter @Inject constructor(private val planetRepository: PlanetRe
                 TitleValue(Title.POPULATION, planet.population?.toString()
                         ?: AppConstants.VALUE_MISSING)
         )
+    }
+
+    private fun onPlanetLikedSuccessfully(newLikesCount: Int) {
+        view?.hideDataLoading()
+        view?.displayPlanetLikesCount(newLikesCount)
+        view?.togglePlanetLikeButton(false)
+        view?.displayLikeSuccess()
+    }
+
+    private fun onPlanetLikedError(throwable: Throwable) {
+        throwable.printStackTrace()
+        view?.hideDataLoading()
+        view?.togglePlanetLikeButton(true)
+        view?.displayLikeError()
     }
 
 }

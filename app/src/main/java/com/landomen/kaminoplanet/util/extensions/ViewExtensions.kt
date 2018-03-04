@@ -17,11 +17,19 @@ fun View.hide() {
     visibility = View.GONE
 }
 
+fun View.toggleVisibility(visible: Boolean) {
+    if (visible) {
+        show()
+    } else {
+        hide()
+    }
+}
+
 fun ViewGroup.inflate(@LayoutRes resource: Int, attachToRoot: Boolean = false): View =
         LayoutInflater.from(context).inflate(resource, this, attachToRoot)
 
 fun RecyclerView.showSeparatorLines() = addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
 
 fun View.showSnackbar(@StringRes message: Int) {
-    Snackbar.make(this, message, Snackbar.LENGTH_LONG)
+    Snackbar.make(this, message, Snackbar.LENGTH_LONG).show()
 }

@@ -11,10 +11,15 @@ import com.landomen.kaminoplanet.presentation.common.model.TitleValue
 interface PlanetContract {
 
     interface View : BaseView {
+        fun displayError()
         fun displayPlanetName(name: String)
         fun displayPlanetLikesCount(count: Int)
         fun displayPlanetImage(imageUrl: String)
         fun displayPlanetDetails(details: List<TitleValue>)
+
+        fun togglePlanetLikeButton(visible: Boolean)
+        fun displayLikeSuccess()
+        fun displayLikeError()
 
         fun openImagePreview(imageUrl: String?)
     }
@@ -22,6 +27,7 @@ interface PlanetContract {
     interface Presenter : BasePresenter<View> {
         fun initialize(planetId: Int)
         fun onImageClicked()
+        fun onPlanetLikeClicked()
     }
 
 }

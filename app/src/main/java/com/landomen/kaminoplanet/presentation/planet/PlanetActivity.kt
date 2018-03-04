@@ -9,9 +9,7 @@ import com.landomen.kaminoplanet.presentation.base.BaseActivity
 import com.landomen.kaminoplanet.presentation.base.Navigator
 import com.landomen.kaminoplanet.presentation.common.adapter.TitleValueRecyclerAdapter
 import com.landomen.kaminoplanet.presentation.common.model.TitleValue
-import com.landomen.kaminoplanet.util.extensions.hide
-import com.landomen.kaminoplanet.util.extensions.show
-import com.landomen.kaminoplanet.util.extensions.showSeparatorLines
+import com.landomen.kaminoplanet.util.extensions.*
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_planet.*
 import javax.inject.Inject
@@ -56,6 +54,10 @@ class PlanetActivity : BaseActivity(), PlanetContract.View {
         planetContentGroup.show()
     }
 
+    override fun displayError() {
+        planetImageView.showSnackbar(R.string.error_data_load)
+    }
+
     override fun displayPlanetName(name: String) {
         planetNameTextView.text = name
     }
@@ -77,6 +79,18 @@ class PlanetActivity : BaseActivity(), PlanetContract.View {
         adapter.items = details
     }
 
+    override fun togglePlanetLikeButton(visible: Boolean) {
+        planetLikeActionImageButton.toggleVisibility(visible)
+    }
+
+    override fun displayLikeSuccess() {
+        planetImageView.showSnackbar(R.string.success_planet_like)
+    }
+
+    override fun displayLikeError() {
+        planetImageView.showSnackbar(R.string.error_planet_like)
+    }
+
     override fun openImagePreview(imageUrl: String?) {
         navigator.openImagePreview(this, imageUrl)
     }
@@ -92,5 +106,6 @@ class PlanetActivity : BaseActivity(), PlanetContract.View {
 
     private fun setupListeners() {
         planetImageView.setOnClickListener { presenter.onImageClicked() }
+        planetLikeActionImageButton.setOnClickListener { presenter.onPlanetLikeClicked() }
     }
 }

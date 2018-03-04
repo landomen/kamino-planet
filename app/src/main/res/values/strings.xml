@@ -2,7 +2,10 @@
     <string name="app_name">StarWars Planet</string>
 
     <!-- General -->
+    <string name="error_data_load">Error loading data</string>
     <string name="error_image_load">Image loading failed</string>
+    <string name="error_planet_like">Error while liking the planet</string>
+    <string name="success_planet_like">You have liked this planet</string>
 
     <!-- Planet -->
     <string name="planet_diameter">Diameter</string>

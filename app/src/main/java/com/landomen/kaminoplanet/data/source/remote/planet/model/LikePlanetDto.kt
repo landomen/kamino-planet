@@ -8,5 +8,5 @@ import com.google.gson.annotations.SerializedName
  */
 data class LikePlanetDto(@SerializedName("planet_id")
                          val planetId: Int,
-                         @SerializedName("likes")
+                         @SerializedName("likes ")
                          val likes: Int)

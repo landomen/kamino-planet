@@ -20,6 +20,7 @@ class LocalModule {
     internal fun provideStarWarsDatabase(context: Context): StarWarsDatabase {
         return Room.databaseBuilder(context.applicationContext,
                 StarWarsDatabase::class.java, DatabaseConstants.DATABASE_FILENAME)
+                .fallbackToDestructiveMigration()
                 .build()
     }
 

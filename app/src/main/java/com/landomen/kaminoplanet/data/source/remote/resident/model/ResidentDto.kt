@@ -1,4 +1,4 @@
-package com.landomen.kaminoplanet.data.source.remote.model.resident
+package com.landomen.kaminoplanet.data.source.remote.resident.model
 
 import com.google.gson.annotations.SerializedName
 

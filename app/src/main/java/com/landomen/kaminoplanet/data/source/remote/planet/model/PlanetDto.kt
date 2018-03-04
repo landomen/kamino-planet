@@ -1,4 +1,4 @@
-package com.landomen.kaminoplanet.data.source.remote.model.planet
+package com.landomen.kaminoplanet.data.source.remote.planet.model
 
 import com.google.gson.annotations.SerializedName
 
@@ -33,4 +33,4 @@ data class PlanetDto(@SerializedName("name")
                      @SerializedName("image_url")
                      val imageUrl: String?,
                      @SerializedName("likes")
-                     val likesCount: Int = 0)
+                     val likesCount: Int)

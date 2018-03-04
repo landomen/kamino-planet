@@ -1,6 +1,6 @@
-package com.landomen.kaminoplanet.data.source.remote.service
+package com.landomen.kaminoplanet.data.source.remote.resident.service
 
-import com.landomen.kaminoplanet.data.source.remote.model.resident.ResidentDto
+import com.landomen.kaminoplanet.data.source.remote.resident.model.ResidentDto
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path

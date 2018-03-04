@@ -1,7 +1,7 @@
-package com.landomen.kaminoplanet.data.source.remote.service
+package com.landomen.kaminoplanet.data.source.remote.planet.service
 
-import com.landomen.kaminoplanet.data.source.remote.model.planet.LikePlanetDto
-import com.landomen.kaminoplanet.data.source.remote.model.planet.PlanetDto
+import com.landomen.kaminoplanet.data.source.remote.planet.model.LikePlanetDto
+import com.landomen.kaminoplanet.data.source.remote.planet.model.PlanetDto
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.POST

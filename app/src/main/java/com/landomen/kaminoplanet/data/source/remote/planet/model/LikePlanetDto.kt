@@ -1,4 +1,4 @@
-package com.landomen.kaminoplanet.data.source.remote.model.planet
+package com.landomen.kaminoplanet.data.source.remote.planet.model
 
 import com.google.gson.annotations.SerializedName
 

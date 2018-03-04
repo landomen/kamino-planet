@@ -1,8 +1,8 @@
 package com.landomen.kaminoplanet.data.source.remote
 
 import com.landomen.kaminoplanet.BuildConfig
-import com.landomen.kaminoplanet.data.source.remote.service.PlanetService
-import com.landomen.kaminoplanet.data.source.remote.service.ResidentService
+import com.landomen.kaminoplanet.data.source.remote.planet.service.PlanetService
+import com.landomen.kaminoplanet.data.source.remote.resident.service.ResidentService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

@@ -4,7 +4,8 @@ package com.landomen.kaminoplanet.data.entity.planet
  * Created by Domen Lanišnik on 04/03/2018.
  * domen.lanisnik@gmail.com
  */
-data class PlanetEntity(val name: String?,
+data class PlanetEntity(var id: Int,
+                        val name: String?,
                         val rotationPeriod: Double?,
                         val orbitalPeriod: Double?,
                         val diameter: Double?,

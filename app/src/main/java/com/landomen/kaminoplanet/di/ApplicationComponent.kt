@@ -2,6 +2,7 @@ package com.landomen.kaminoplanet.di
 
 import android.app.Application
 import com.landomen.kaminoplanet.KaminoApp
+import com.landomen.kaminoplanet.data.source.local.LocalModule
 import com.landomen.kaminoplanet.data.source.remote.NetModule
 import com.landomen.kaminoplanet.di.module.ApplicationModule
 import dagger.BindsInstance
@@ -17,7 +18,8 @@ import javax.inject.Singleton
 @Component(modules = [
     AndroidSupportInjectionModule::class,
     ApplicationModule::class,
-    NetModule::class])
+    NetModule::class,
+    LocalModule::class])
 interface ApplicationComponent {
 
     @Component.Builder

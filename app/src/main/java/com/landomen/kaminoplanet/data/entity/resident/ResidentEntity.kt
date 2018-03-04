@@ -4,7 +4,8 @@ package com.landomen.kaminoplanet.data.entity.resident
  * Created by Domen Lanišnik on 04/03/2018.
  * domen.lanisnik@gmail.com
  */
-data class ResidentEntity(val name: String?,
+data class ResidentEntity(val id: Int,
+                          val name: String?,
                           val height: Double?,
                           val mass: Double?,
                           val hairColor: String?,

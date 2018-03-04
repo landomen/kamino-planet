@@ -1,3 +1,17 @@
 <resources>
-    <string name="app_name">Kamino Planet</string>
+    <string name="app_name">StarWars Planet</string>
+
+    <!-- General -->
+    <string name="error_image_load">Image loading failed</string>
+
+    <!-- Planet -->
+    <string name="planet_diameter">Diameter</string>
+    <string name="planet_climate">Climate</string>
+    <string name="planet_gravity">Gravity</string>
+    <string name="planet_terrain">Terrain</string>
+    <string name="planet_rotational_period">Rotational period</string>
+    <string name="planet_orbital_period">Orbital period</string>
+    <string name="planet_surface_water">Surface water</string>
+    <string name="planet_population">Population</string>
+    <string name="planet_likes">Likes:</string>
 </resources>

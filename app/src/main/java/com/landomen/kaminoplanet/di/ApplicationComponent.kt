@@ -4,6 +4,7 @@ import android.app.Application
 import com.landomen.kaminoplanet.KaminoApp
 import com.landomen.kaminoplanet.data.source.local.LocalModule
 import com.landomen.kaminoplanet.data.source.remote.NetModule
+import com.landomen.kaminoplanet.di.module.ActivityBindingModule
 import com.landomen.kaminoplanet.di.module.ApplicationModule
 import com.landomen.kaminoplanet.di.module.PlanetRepositoryModule
 import com.landomen.kaminoplanet.di.module.ResidentRepositoryModule
@@ -20,6 +21,7 @@ import javax.inject.Singleton
 @Component(modules = [
     AndroidSupportInjectionModule::class,
     ApplicationModule::class,
+    ActivityBindingModule::class,
     NetModule::class,
     LocalModule::class,
     PlanetRepositoryModule::class,

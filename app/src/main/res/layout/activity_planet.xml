@@ -6,13 +6,97 @@
     android:layout_height="match_parent"
     tools:context="com.landomen.kaminoplanet.presentation.planet.PlanetActivity">
 
-    <TextView
+    <ImageButton
+        android:id="@+id/planetLikeActionImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginEnd="@dimen/space_normal"
+        android:padding="@dimen/space_small"
+        android:src="@drawable/ic_like"
+        android:tint="@color/colorAccent"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintBottom_toBottomOf="@+id/planetImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/planetImageView" />
+
+    <TextView
+        android:id="@+id/planetNameTextView"
+        style="@style/TitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_normal"
+        app:layout_constraintBottom_toTopOf="@+id/planetLikesTitleTextView"
+        app:layout_constraintEnd_toStartOf="@id/planetLikeActionImageView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/planetImageView"
+        app:layout_constraintTop_toTopOf="@+id/planetImageView"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Name" />
+
+    <TextView
+        android:id="@+id/planetLikesTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_normal"
+        android:layout_marginTop="@dimen/space_small"
+        android:text="@string/planet_likes"
+        app:layout_constraintBottom_toBottomOf="@+id/planetImageView"
+        app:layout_constraintEnd_toStartOf="@id/planetLikeActionImageView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/planetImageView"
+        app:layout_constraintTop_toBottomOf="@+id/planetNameTextView" />
+
+    <TextView
+        android:id="@+id/planetLikesTextView"
+        style="@style/ValueText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_small"
+        app:layout_constraintBottom_toBottomOf="@+id/planetLikesTitleTextView"
+        app:layout_constraintStart_toEndOf="@+id/planetLikesTitleTextView"
+        app:layout_constraintTop_toTopOf="@+id/planetLikesTitleTextView"
+        tools:text="10" />
+
+
+    <ImageView
+        android:id="@+id/planetImageView"
+        android:layout_width="@dimen/image_small_size"
+        android:layout_height="@dimen/image_small_size"
+        android:layout_margin="@dimen/space_normal"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@mipmap/ic_launcher" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/planetRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/space_normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/planetImageView"
+        tools:listitem="@layout/recycler_item_detail" />
+
+    <ProgressBar
+        android:id="@+id/planetProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.Group
+        android:id="@+id/planetContentGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="planetRecyclerView,planetNameTextView,planetImageView"
+        tools:visibility="visible" />
+
 
 </android.support.constraint.ConstraintLayout>

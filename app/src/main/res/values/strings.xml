@@ -17,4 +17,7 @@
     <string name="planet_surface_water">Surface water</string>
     <string name="planet_population">Population</string>
     <string name="planet_likes">Likes:</string>
+    <string name="planet_view_residents">View residents</string>
+
+    <string name="residents">Residents</string>
 </resources>

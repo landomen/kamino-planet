@@ -17,17 +17,20 @@ interface PlanetContract {
         fun displayPlanetImage(imageUrl: String)
         fun displayPlanetDetails(details: List<TitleValue>)
 
+        fun toggleViewResidentsButton(visible: Boolean)
         fun togglePlanetLikeButton(visible: Boolean)
         fun displayLikeSuccess()
         fun displayLikeError()
 
         fun openImagePreview(imageUrl: String?)
+        fun openResidentsActivity(residents: List<Int>)
     }
 
     interface Presenter : BasePresenter<View> {
         fun initialize(planetId: Int)
         fun onImageClicked()
         fun onPlanetLikeClicked()
+        fun onViewResidentsClicked()
     }
 
 }

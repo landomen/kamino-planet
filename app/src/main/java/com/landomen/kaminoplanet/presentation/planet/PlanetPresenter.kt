@@ -55,6 +55,10 @@ class PlanetPresenter @Inject constructor(private val planetRepository: PlanetRe
                 .addTo(compositeDisposable)
     }
 
+    override fun onViewResidentsClicked() {
+        view?.openResidentsActivity(planetEntity?.residents ?: listOf())
+    }
+
     private fun fetchPlanetDetails(planetId: Int) {
         view?.showDataLoading()
         planetRepository.getPlanet(planetId)
@@ -89,6 +93,7 @@ class PlanetPresenter @Inject constructor(private val planetRepository: PlanetRe
         }
         view?.displayPlanetDetails(createPlanetDetails(planetEntity))
         view?.hideDataLoading()
+        view?.toggleViewResidentsButton(!planetEntity.residents.isNotEmpty())
         this.planetEntity = planetEntity
     }
 
@@ -98,19 +103,14 @@ class PlanetPresenter @Inject constructor(private val planetRepository: PlanetRe
     }
 
     private fun createPlanetDetails(planet: PlanetEntity): List<TitleValue> {
-        return listOf(TitleValue(Title.ROTATIONAL_PERIOD, planet.rotationPeriod?.toString()
-                ?: AppConstants.VALUE_MISSING),
-                TitleValue(Title.ORBITAL_PERIOD, planet.orbitalPeriod?.toString()
-                        ?: AppConstants.VALUE_MISSING),
-                TitleValue(Title.DIAMETER, planet.diameter?.toString()
-                        ?: AppConstants.VALUE_MISSING),
+        return listOf(TitleValue(Title.ROTATIONAL_PERIOD, planet.rotationPeriod?.toString() ?: AppConstants.VALUE_MISSING),
+                TitleValue(Title.ORBITAL_PERIOD, planet.orbitalPeriod?.toString() ?: AppConstants.VALUE_MISSING),
+                TitleValue(Title.DIAMETER, planet.diameter?.toString() ?: AppConstants.VALUE_MISSING),
                 TitleValue(Title.CLIMATE, planet.climate ?: AppConstants.VALUE_MISSING),
                 TitleValue(Title.GRAVITY, planet.gravity ?: AppConstants.VALUE_MISSING),
                 TitleValue(Title.TERRAIN, planet.terrain ?: AppConstants.VALUE_MISSING),
-                TitleValue(Title.SURFACE_WATER, planet.surfaceWater?.toString()
-                        ?: AppConstants.VALUE_MISSING),
-                TitleValue(Title.POPULATION, planet.population?.toString()
-                        ?: AppConstants.VALUE_MISSING)
+                TitleValue(Title.SURFACE_WATER, planet.surfaceWater?.toString() ?: AppConstants.VALUE_MISSING),
+                TitleValue(Title.POPULATION, planet.population?.toString() ?: AppConstants.VALUE_MISSING)
         )
     }
 

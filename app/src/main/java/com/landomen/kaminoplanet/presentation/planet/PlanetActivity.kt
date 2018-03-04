@@ -79,6 +79,10 @@ class PlanetActivity : BaseActivity(), PlanetContract.View {
         adapter.items = details
     }
 
+    override fun toggleViewResidentsButton(visible: Boolean) {
+        planetViewResidentsButton.toggleVisibility(visible)
+    }
+
     override fun togglePlanetLikeButton(visible: Boolean) {
         planetLikeActionImageButton.toggleVisibility(visible)
     }
@@ -107,5 +111,6 @@ class PlanetActivity : BaseActivity(), PlanetContract.View {
     private fun setupListeners() {
         planetImageView.setOnClickListener { presenter.onImageClicked() }
         planetLikeActionImageButton.setOnClickListener { presenter.onPlanetLikeClicked() }
+        planetViewResidentsButton.setOnClickListener { presenter.onViewResidentsClicked() }
     }
 }

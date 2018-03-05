@@ -12,13 +12,11 @@ interface ResidentListContract {
 
     interface View : BaseView {
         fun displayResidents(residents: List<ResidentEntity>)
-        fun displayError()
         fun openResidentDetailsActivity(residentId: Int)
     }
 
     interface Presenter : BasePresenter<View> {
         fun initialize(planetId: Int)
-        fun onRetryClicked()
         fun onResidentClicked(resident: ResidentEntity)
     }
 }

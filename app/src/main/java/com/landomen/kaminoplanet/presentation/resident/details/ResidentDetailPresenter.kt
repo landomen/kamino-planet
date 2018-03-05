@@ -22,6 +22,8 @@ class ResidentDetailPresenter @Inject constructor(private val residentRepository
     private var residentId = 0
     private var resident: ResidentEntity? = null
 
+    // region Contract functions
+
     override fun initialize(residentId: Int) {
         this.residentId = residentId
         fetchResidentDetails(residentId)
@@ -42,13 +44,18 @@ class ResidentDetailPresenter @Inject constructor(private val residentRepository
         view?.openImagePreview(resident?.imageUrl)
     }
 
-    override fun onRetryClicked() {
+    override fun onRetry() {
         fetchResidentDetails(residentId)
     }
 
     override fun onImageLoadingFailed() {
         view?.displayImageLoadingError()
+
     }
+
+    // endregion
+
+    // region Private functions
 
     private fun fetchResidentDetails(residentId: Int) {
         view?.showDataLoading()
@@ -78,7 +85,7 @@ class ResidentDetailPresenter @Inject constructor(private val residentRepository
 
     private fun onResidentDetailsFetchError(throwable: Throwable) {
         throwable.printStackTrace()
-        view?.displayError()
+        view?.showError()
     }
 
     private fun createResidentDetails(resident: ResidentEntity): List<TitleValue> {
@@ -91,4 +98,6 @@ class ResidentDetailPresenter @Inject constructor(private val residentRepository
                 TitleValue(ResidentTitle.EYE_COLOR, resident.eyeColor ?: AppConstants.VALUE_MISSING)
         )
     }
+
+    // endregion
 }

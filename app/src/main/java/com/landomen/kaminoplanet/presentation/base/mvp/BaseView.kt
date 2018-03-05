@@ -9,4 +9,6 @@ interface BaseView {
     fun showDataLoading()
 
     fun hideDataLoading()
+
+    fun showError()
 }

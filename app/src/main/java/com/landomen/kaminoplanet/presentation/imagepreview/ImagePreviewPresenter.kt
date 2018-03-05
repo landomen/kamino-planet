@@ -9,13 +9,11 @@ import javax.inject.Inject
 class ImagePreviewPresenter @Inject constructor() : ImagePreviewContract.Presenter {
 
     private var view: ImagePreviewContract.View? = null
+    private var imageUrl: String? = null
 
     override fun initialize(imageUrl: String?) {
-        if (imageUrl != null) {
-            view?.displayImage(imageUrl)
-        } else {
-            view?.displayImageLoadingError()
-        }
+        this.imageUrl = imageUrl
+        loadImage(imageUrl)
     }
 
     override fun takeView(view: ImagePreviewContract.View) {
@@ -26,9 +24,25 @@ class ImagePreviewPresenter @Inject constructor() : ImagePreviewContract.Present
         this.view = null
     }
 
-    override fun onImageLoadingFailed() {
-        view?.displayImageLoadingError()
+    override fun onRetry() {
+        loadImage(imageUrl)
     }
 
+    override fun onImageLoaded() {
+        view?.hideDataLoading()
+    }
+
+    override fun onImageLoadingFailed() {
+        view?.showError()
+    }
+
+    private fun loadImage(imageUrl: String?) {
+        view?.showDataLoading()
+        if (imageUrl != null) {
+            view?.displayImage(imageUrl)
+        } else {
+            view?.showError()
+        }
+    }
 
 }

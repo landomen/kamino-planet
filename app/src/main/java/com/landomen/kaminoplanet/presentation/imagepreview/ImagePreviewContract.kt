@@ -11,11 +11,11 @@ interface ImagePreviewContract {
 
     interface View : BaseView {
         fun displayImage(imageUrl: String)
-        fun displayImageLoadingError()
     }
 
     interface Presenter : BasePresenter<View> {
         fun initialize(imageUrl: String?)
+        fun onImageLoaded()
         fun onImageLoadingFailed()
     }
 }

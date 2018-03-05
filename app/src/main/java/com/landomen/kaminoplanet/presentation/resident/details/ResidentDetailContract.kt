@@ -16,7 +16,6 @@ interface ResidentDetailContract {
         fun displayResidentImage(imageUrl: String)
         fun displayResidentDetails(details: List<TitleValue>)
         fun displayImageLoadingError()
-        fun displayError()
         fun openImagePreview(imageUrl: String?)
     }
 
@@ -24,6 +23,5 @@ interface ResidentDetailContract {
         fun initialize(residentId: Int)
         fun onImageLoadingFailed()
         fun onImageClicked()
-        fun onRetryClicked()
     }
 }

@@ -22,7 +22,7 @@ class PlanetPresenter @Inject constructor(private val planetRepository: PlanetRe
     private var planetEntity: PlanetEntity? = null
     private var planetId: Int = 0
 
-    // region Contract methods
+    // region Contract functions
 
     override fun initialize(planetId: Int) {
         this.planetId = planetId
@@ -48,7 +48,7 @@ class PlanetPresenter @Inject constructor(private val planetRepository: PlanetRe
         view?.openResidentsActivity(planetEntity?.id!!, planetEntity?.residents ?: listOf())
     }
 
-    override fun onRetryClicked() {
+    override fun onRetry() {
         fetchPlanetDetails(planetId)
     }
 
@@ -98,7 +98,7 @@ class PlanetPresenter @Inject constructor(private val planetRepository: PlanetRe
 
     private fun onPlanetDetailsFetchError(throwable: Throwable) {
         throwable.printStackTrace()
-        view?.displayError()
+        view?.showError()
     }
 
     private fun createPlanetDetails(planet: PlanetEntity): List<TitleValue> {

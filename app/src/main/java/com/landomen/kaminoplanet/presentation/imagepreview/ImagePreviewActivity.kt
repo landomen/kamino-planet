@@ -7,8 +7,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.landomen.kaminoplanet.R
 import com.landomen.kaminoplanet.presentation.base.BaseActivity
-import com.landomen.kaminoplanet.util.extensions.listener
-import com.landomen.kaminoplanet.util.extensions.showSnackbar
+import com.landomen.kaminoplanet.presentation.common.view.LoadingStateView
+import com.landomen.kaminoplanet.util.extensions.*
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_image_preview.*
 import org.jetbrains.anko.intentFor
@@ -35,6 +35,7 @@ class ImagePreviewActivity : BaseActivity(), ImagePreviewContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_preview)
         setupInjection()
+        setupListeners()
         initializePresenter()
     }
 
@@ -45,7 +46,9 @@ class ImagePreviewActivity : BaseActivity(), ImagePreviewContract.View {
 
     override fun setupToolbar() = Unit
 
-    override fun setupListeners() = Unit
+    override fun setupListeners() {
+        imagePreviewLoadingView.retryListener = { presenter.onRetry() }
+    }
 
     override fun setupInjection() {
         AndroidInjection.inject(this)
@@ -56,9 +59,22 @@ class ImagePreviewActivity : BaseActivity(), ImagePreviewContract.View {
         presenter.initialize(intent?.getStringExtra(EXTRA_IMAGE_URL))
     }
 
-    override fun showDataLoading() = Unit
+    override fun showDataLoading() {
+        imageView.invisible()
+        imagePreviewLoadingView.state = LoadingStateView.State.LOADING
+        imagePreviewLoadingView.show()
+    }
 
-    override fun hideDataLoading() = Unit
+    override fun hideDataLoading() {
+        imageView.show()
+        imagePreviewLoadingView.hide()
+    }
+
+    override fun showError() {
+        imagePreviewLoadingView.state = LoadingStateView.State.ERROR
+        imagePreviewLoadingView.show()
+        imageView.showSnackbar(R.string.error_image_load)
+    }
 
     override fun displayImage(imageUrl: String) {
         Glide.with(this)
@@ -67,13 +83,12 @@ class ImagePreviewActivity : BaseActivity(), ImagePreviewContract.View {
                         .fitCenter()
                         .placeholder(R.mipmap.ic_launcher)
                         .error(R.mipmap.ic_launcher))
-                .listener(onFailure = {
+                .listener(onSuccess = {
+                    presenter.onImageLoaded()
+                }, onFailure = {
                     presenter.onImageLoadingFailed()
                 })
                 .into(imageView)
     }
 
-    override fun displayImageLoadingError() {
-        imageView.showSnackbar(R.string.error_image_load)
-    }
 }

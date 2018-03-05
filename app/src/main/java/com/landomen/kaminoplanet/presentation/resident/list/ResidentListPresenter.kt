@@ -18,6 +18,8 @@ class ResidentListPresenter @Inject constructor(private val residentRepository: 
     private val compositeDisposable = CompositeDisposable()
     private var planetId: Int = 0
 
+    // region Contract functions
+
     override fun initialize(planetId: Int) {
         this.planetId = planetId
         fetchResidents(planetId)
@@ -38,9 +40,13 @@ class ResidentListPresenter @Inject constructor(private val residentRepository: 
         view?.openResidentDetailsActivity(resident.id)
     }
 
-    override fun onRetryClicked() {
+    override fun onRetry() {
         fetchResidents(planetId)
     }
+
+    // endregion
+
+    // region Private functions
 
     private fun fetchResidents(planetId: Int) {
         view?.showDataLoading()
@@ -63,6 +69,8 @@ class ResidentListPresenter @Inject constructor(private val residentRepository: 
     private fun onResidentsFetchError(throwable: Throwable) {
         throwable.printStackTrace()
         view?.hideDataLoading()
-        view?.displayError()
+        view?.showError()
     }
+
+    // endregion
 }

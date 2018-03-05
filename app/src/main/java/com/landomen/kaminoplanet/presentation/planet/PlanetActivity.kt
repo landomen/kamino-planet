@@ -40,7 +40,7 @@ class PlanetActivity : BaseActivity(), PlanetContract.View {
         super.onDestroy()
     }
 
-    // region Contract methods
+    // region Contract functions
 
     override fun setupToolbar() {
         setSupportActionBar(toolbar)
@@ -55,7 +55,7 @@ class PlanetActivity : BaseActivity(), PlanetContract.View {
         planetImageView.setOnClickListener { presenter.onImageClicked() }
         planetLikeActionImageButton.setOnClickListener { presenter.onPlanetLikeClicked() }
         planetViewResidentsButton.setOnClickListener { presenter.onViewResidentsClicked() }
-        planetLoadingView.retryListener = { presenter.onRetryClicked() }
+        planetLoadingView.retryListener = { presenter.onRetry() }
     }
 
     override fun initializePresenter() {
@@ -74,7 +74,7 @@ class PlanetActivity : BaseActivity(), PlanetContract.View {
         planetContentGroup.show()
     }
 
-    override fun displayError() {
+    override fun showError() {
         planetLoadingView.state = LoadingStateView.State.ERROR
         planetLoadingView.show()
         planetImageView.showSnackbar(R.string.error_data_load)

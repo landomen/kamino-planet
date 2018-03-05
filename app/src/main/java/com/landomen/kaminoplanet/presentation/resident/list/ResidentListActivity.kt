@@ -67,7 +67,7 @@ class ResidentListActivity : BaseActivity(), ResidentListContract.View {
 
     override fun setupListeners() {
         adapter.listener = { presenter.onResidentClicked(it) }
-        residentsLoadingView.retryListener = { presenter.onRetryClicked() }
+        residentsLoadingView.retryListener = { presenter.onRetry() }
     }
 
     override fun setupInjection() {
@@ -90,7 +90,7 @@ class ResidentListActivity : BaseActivity(), ResidentListContract.View {
         residentsRecyclerView.show()
     }
 
-    override fun displayError() {
+    override fun showError() {
         residentsLoadingView.state = LoadingStateView.State.ERROR
         residentsLoadingView.show()
         residentsRecyclerView.hide()

@@ -17,4 +17,6 @@ interface BasePresenter<in V : BaseView> {
      * Perform any final cleanup, the view is going to be destroyed.
      */
     fun destroy()
+
+    fun onRetry()
 }

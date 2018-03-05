@@ -64,7 +64,7 @@ class ResidentDetailActivity : BaseActivity(), ResidentDetailContract.View {
 
     override fun setupListeners() {
         residentImageView.setOnClickListener { presenter.onImageClicked() }
-        residentLoadingView.retryListener = { presenter.onRetryClicked() }
+        residentLoadingView.retryListener = { presenter.onRetry() }
     }
 
     override fun setupInjection() {
@@ -91,7 +91,7 @@ class ResidentDetailActivity : BaseActivity(), ResidentDetailContract.View {
         residentContentGroup.show()
     }
 
-    override fun displayError() {
+    override fun showError() {
         residentLoadingView.state = LoadingStateView.State.ERROR
         residentLoadingView.show()
         residentImageView.showSnackbar(R.string.error_data_load)

@@ -3,7 +3,7 @@ package com.landomen.kaminoplanet.presentation.resident.list.viewholder
 import android.view.View
 import com.landomen.kaminoplanet.data.entity.resident.ResidentEntity
 import com.landomen.kaminoplanet.presentation.base.viewholder.BaseViewHolder
-import com.landomen.kaminoplanet.util.extensions.loadImage
+import com.landomen.kaminoplanet.presentation.common.extensions.loadImage
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.recycler_item_resident.*
 

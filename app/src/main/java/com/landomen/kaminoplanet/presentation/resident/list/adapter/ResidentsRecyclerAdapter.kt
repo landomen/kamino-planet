@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import com.landomen.kaminoplanet.R
 import com.landomen.kaminoplanet.data.entity.resident.ResidentEntity
 import com.landomen.kaminoplanet.presentation.resident.list.viewholder.ResidentViewHolder
-import com.landomen.kaminoplanet.util.extensions.inflate
+import com.landomen.kaminoplanet.presentation.common.extensions.inflate
 import javax.inject.Inject
 import kotlin.properties.Delegates
 

@@ -10,10 +10,10 @@ import com.landomen.kaminoplanet.presentation.base.BaseActivity
 import com.landomen.kaminoplanet.presentation.base.Navigator
 import com.landomen.kaminoplanet.presentation.common.view.LoadingStateView
 import com.landomen.kaminoplanet.presentation.resident.list.adapter.ResidentsRecyclerAdapter
-import com.landomen.kaminoplanet.util.extensions.hide
-import com.landomen.kaminoplanet.util.extensions.show
-import com.landomen.kaminoplanet.util.extensions.showSeparatorLines
-import com.landomen.kaminoplanet.util.extensions.showSnackbar
+import com.landomen.kaminoplanet.presentation.common.extensions.hide
+import com.landomen.kaminoplanet.presentation.common.extensions.show
+import com.landomen.kaminoplanet.presentation.common.extensions.showSeparatorLines
+import com.landomen.kaminoplanet.presentation.common.extensions.showSnackbar
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_resident_list.*
 import kotlinx.android.synthetic.main.toolbar.*

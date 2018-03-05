@@ -10,7 +10,7 @@ import com.landomen.kaminoplanet.presentation.base.Navigator
 import com.landomen.kaminoplanet.presentation.common.adapter.TitleValueRecyclerAdapter
 import com.landomen.kaminoplanet.presentation.common.model.TitleValue
 import com.landomen.kaminoplanet.presentation.common.view.LoadingStateView
-import com.landomen.kaminoplanet.util.extensions.*
+import com.landomen.kaminoplanet.presentation.common.extensions.*
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_planet.*
 import kotlinx.android.synthetic.main.toolbar.*

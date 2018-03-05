@@ -1,4 +1,4 @@
-package com.landomen.kaminoplanet.util.extensions
+package com.landomen.kaminoplanet.presentation.common.extensions
 
 import android.support.annotation.LayoutRes
 import android.support.annotation.StringRes

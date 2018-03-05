@@ -8,7 +8,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.landomen.kaminoplanet.R
 import com.landomen.kaminoplanet.presentation.base.BaseActivity
 import com.landomen.kaminoplanet.presentation.common.view.LoadingStateView
-import com.landomen.kaminoplanet.util.extensions.*
+import com.landomen.kaminoplanet.presentation.common.extensions.*
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_image_preview.*
 import org.jetbrains.anko.intentFor

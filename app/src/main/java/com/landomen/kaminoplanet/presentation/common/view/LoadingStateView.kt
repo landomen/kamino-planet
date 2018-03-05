@@ -4,8 +4,8 @@ import android.content.Context
 import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import com.landomen.kaminoplanet.R
-import com.landomen.kaminoplanet.util.extensions.inflate
-import com.landomen.kaminoplanet.util.extensions.toggleVisibility
+import com.landomen.kaminoplanet.presentation.common.extensions.inflate
+import com.landomen.kaminoplanet.presentation.common.extensions.toggleVisibility
 import kotlinx.android.synthetic.main.view_loading_state.view.*
 import kotlin.properties.Delegates
 

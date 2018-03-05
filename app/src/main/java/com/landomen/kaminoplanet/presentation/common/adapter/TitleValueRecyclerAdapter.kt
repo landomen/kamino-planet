@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import com.landomen.kaminoplanet.R
 import com.landomen.kaminoplanet.presentation.common.model.TitleValue
 import com.landomen.kaminoplanet.presentation.common.viewholder.TitleValueViewHolder
-import com.landomen.kaminoplanet.util.extensions.inflate
+import com.landomen.kaminoplanet.presentation.common.extensions.inflate
 import javax.inject.Inject
 import kotlin.properties.Delegates
 

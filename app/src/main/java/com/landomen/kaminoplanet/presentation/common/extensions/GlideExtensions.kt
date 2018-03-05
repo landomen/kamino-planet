@@ -1,4 +1,4 @@
-package com.landomen.kaminoplanet.util.extensions
+package com.landomen.kaminoplanet.presentation.common.extensions
 
 import android.graphics.drawable.Drawable
 import com.bumptech.glide.RequestBuilder

@@ -29,6 +29,10 @@
         <activity
             android:name=".presentation.resident.list.ResidentListActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".presentation.resident.details.ResidentDetailActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

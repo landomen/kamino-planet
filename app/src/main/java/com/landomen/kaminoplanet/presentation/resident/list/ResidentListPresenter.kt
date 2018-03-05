@@ -35,7 +35,7 @@ class ResidentListPresenter @Inject constructor(private val residentRepository: 
     }
 
     override fun onResidentClicked(resident: ResidentEntity) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        view?.openResidentDetailsActivity(resident.id)
     }
 
     override fun onRetryClicked() {

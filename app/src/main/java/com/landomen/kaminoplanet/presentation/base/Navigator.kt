@@ -2,6 +2,7 @@ package com.landomen.kaminoplanet.presentation.base
 
 import android.content.Context
 import com.landomen.kaminoplanet.presentation.imagepreview.ImagePreviewActivity
+import com.landomen.kaminoplanet.presentation.resident.details.ResidentDetailActivity
 import com.landomen.kaminoplanet.presentation.resident.list.ResidentListActivity
 import javax.inject.Inject
 
@@ -17,5 +18,9 @@ class Navigator @Inject constructor() {
 
     fun openResidentsList(context: Context, planetId: Int) {
         context.startActivity(ResidentListActivity.createIntent(context, planetId))
+    }
+
+    fun openResidentDetails(context: Context, residentId: Int) {
+        context.startActivity(ResidentDetailActivity.createIntent(context, residentId))
     }
 }

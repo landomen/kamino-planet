@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.resident.details.ResidentDetailActivity">
+
+    <include
+        layout="@layout/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/residentImageView"
+        android:layout_width="@dimen/image_small_size"
+        android:layout_height="@dimen/image_small_size"
+        android:layout_margin="@dimen/space_normal"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/residentNameTextView"
+        style="@style/TitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_normal"
+        app:layout_constraintBottom_toBottomOf="@id/residentImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/residentImageView"
+        app:layout_constraintTop_toTopOf="@id/residentImageView"
+        tools:text="Name" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/residentRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/space_normal"
+        android:layout_marginTop="@dimen/space_normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/residentImageView"
+        tools:listitem="@layout/recycler_item_detail" />
+
+    <com.landomen.kaminoplanet.presentation.common.view.LoadingStateView
+        android:id="@+id/residentLoadingView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <android.support.constraint.Group
+        android:id="@+id/residentContentGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="residentNameTextView,residentRecyclerView,residentImageView"
+        tools:visibility="visible" />
+
+</android.support.constraint.ConstraintLayout>

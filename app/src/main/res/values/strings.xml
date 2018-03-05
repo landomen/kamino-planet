@@ -20,5 +20,14 @@
     <string name="planet_likes">Likes:</string>
     <string name="planet_view_residents">View residents</string>
 
+    <!-- Resident -->
     <string name="residents">Residents</string>
+    <string name="resident_gender">Gender</string>
+    <string name="resident_mass">Mass</string>
+    <string name="resident_height">Height</string>
+    <string name="resident_birth_year">Birth year</string>
+    <string name="resident_hair_color">Hair color</string>
+    <string name="resident_skin_color">Skin color</string>
+    <string name="resident_eye_color">Eye color</string>
+
 </resources>

@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.landomen.kaminoplanet.R
 import com.landomen.kaminoplanet.data.entity.resident.ResidentEntity
 import com.landomen.kaminoplanet.presentation.base.BaseActivity
+import com.landomen.kaminoplanet.presentation.base.Navigator
 import com.landomen.kaminoplanet.presentation.common.view.LoadingStateView
 import com.landomen.kaminoplanet.presentation.resident.list.adapter.ResidentsRecyclerAdapter
 import com.landomen.kaminoplanet.util.extensions.hide
@@ -39,6 +40,9 @@ class ResidentListActivity : BaseActivity(), ResidentListContract.View {
     @Inject
     lateinit var adapter: ResidentsRecyclerAdapter
 
+    @Inject
+    lateinit var navigator: Navigator
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_resident_list)
@@ -47,6 +51,11 @@ class ResidentListActivity : BaseActivity(), ResidentListContract.View {
         setupListeners()
         setupRecyclerView()
         initializePresenter()
+    }
+
+    override fun onDestroy() {
+        presenter.destroy()
+        super.onDestroy()
     }
 
     override fun setupToolbar() {
@@ -93,7 +102,7 @@ class ResidentListActivity : BaseActivity(), ResidentListContract.View {
     }
 
     override fun openResidentDetailsActivity(residentId: Int) {
-
+        navigator.openResidentDetails(this, residentId)
     }
 
     private fun setupRecyclerView() {

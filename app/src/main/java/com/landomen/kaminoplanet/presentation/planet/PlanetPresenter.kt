@@ -3,8 +3,8 @@ package com.landomen.kaminoplanet.presentation.planet
 import com.landomen.kaminoplanet.data.entity.planet.PlanetEntity
 import com.landomen.kaminoplanet.data.repository.planet.PlanetRepository
 import com.landomen.kaminoplanet.presentation.common.constants.AppConstants
-import com.landomen.kaminoplanet.presentation.common.model.Title
 import com.landomen.kaminoplanet.presentation.common.model.TitleValue
+import com.landomen.kaminoplanet.presentation.planet.model.PlanetTitle
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
@@ -85,7 +85,7 @@ class PlanetPresenter @Inject constructor(private val planetRepository: PlanetRe
     }
 
     private fun onPlanetDetailsFetched(planetEntity: PlanetEntity) {
-        view?.displayPlanetName(planetEntity.name ?: "-")
+        view?.displayPlanetName(planetEntity.name ?: AppConstants.VALUE_MISSING)
         view?.displayPlanetLikesCount(planetEntity.likesCount)
         planetEntity.imageUrl?.let {
             view?.displayPlanetImage(it)
@@ -102,14 +102,14 @@ class PlanetPresenter @Inject constructor(private val planetRepository: PlanetRe
     }
 
     private fun createPlanetDetails(planet: PlanetEntity): List<TitleValue> {
-        return listOf(TitleValue(Title.ROTATIONAL_PERIOD, planet.rotationPeriod?.toString() ?: AppConstants.VALUE_MISSING),
-                TitleValue(Title.ORBITAL_PERIOD, planet.orbitalPeriod?.toString() ?: AppConstants.VALUE_MISSING),
-                TitleValue(Title.DIAMETER, planet.diameter?.toString() ?: AppConstants.VALUE_MISSING),
-                TitleValue(Title.CLIMATE, planet.climate ?: AppConstants.VALUE_MISSING),
-                TitleValue(Title.GRAVITY, planet.gravity ?: AppConstants.VALUE_MISSING),
-                TitleValue(Title.TERRAIN, planet.terrain ?: AppConstants.VALUE_MISSING),
-                TitleValue(Title.SURFACE_WATER, planet.surfaceWater?.toString() ?: AppConstants.VALUE_MISSING),
-                TitleValue(Title.POPULATION, planet.population?.toString() ?: AppConstants.VALUE_MISSING)
+        return listOf(TitleValue(PlanetTitle.ROTATIONAL_PERIOD, planet.rotationPeriod?.toString() ?: AppConstants.VALUE_MISSING),
+                TitleValue(PlanetTitle.ORBITAL_PERIOD, planet.orbitalPeriod?.toString() ?: AppConstants.VALUE_MISSING),
+                TitleValue(PlanetTitle.DIAMETER, planet.diameter?.toString() ?: AppConstants.VALUE_MISSING),
+                TitleValue(PlanetTitle.CLIMATE, planet.climate ?: AppConstants.VALUE_MISSING),
+                TitleValue(PlanetTitle.GRAVITY, planet.gravity ?: AppConstants.VALUE_MISSING),
+                TitleValue(PlanetTitle.TERRAIN, planet.terrain ?: AppConstants.VALUE_MISSING),
+                TitleValue(PlanetTitle.SURFACE_WATER, planet.surfaceWater?.toString() ?: AppConstants.VALUE_MISSING),
+                TitleValue(PlanetTitle.POPULATION, planet.population?.toString() ?: AppConstants.VALUE_MISSING)
         )
     }
 

@@ -9,9 +9,11 @@ import com.landomen.kaminoplanet.presentation.base.BaseActivity
 import com.landomen.kaminoplanet.presentation.base.Navigator
 import com.landomen.kaminoplanet.presentation.common.adapter.TitleValueRecyclerAdapter
 import com.landomen.kaminoplanet.presentation.common.model.TitleValue
+import com.landomen.kaminoplanet.presentation.common.view.LoadingStateView
 import com.landomen.kaminoplanet.util.extensions.*
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_planet.*
+import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
 class PlanetActivity : BaseActivity(), PlanetContract.View {
@@ -26,7 +28,8 @@ class PlanetActivity : BaseActivity(), PlanetContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_planet)
-        AndroidInjection.inject(this)
+        setupToolbar()
+        setupInjection()
         setupListeners()
         setupRecyclerView()
         initializePresenter()
@@ -37,7 +40,23 @@ class PlanetActivity : BaseActivity(), PlanetContract.View {
         super.onDestroy()
     }
 
-    // region Contract
+    // region Contract methods
+
+    override fun setupToolbar() {
+        setSupportActionBar(toolbar)
+        toolbar.setTitle(R.string.app_name)
+    }
+
+    override fun setupInjection() {
+        AndroidInjection.inject(this)
+    }
+
+    override fun setupListeners() {
+        planetImageView.setOnClickListener { presenter.onImageClicked() }
+        planetLikeActionImageButton.setOnClickListener { presenter.onPlanetLikeClicked() }
+        planetViewResidentsButton.setOnClickListener { presenter.onViewResidentsClicked() }
+        planetLoadingView.retryListener = { presenter.onRetryClicked() }
+    }
 
     override fun initializePresenter() {
         presenter.takeView(this)
@@ -45,16 +64,19 @@ class PlanetActivity : BaseActivity(), PlanetContract.View {
     }
 
     override fun showDataLoading() {
-        planetProgressBar.show()
+        planetLoadingView.state = LoadingStateView.State.LOADING
+        planetLoadingView.show()
         planetContentGroup.hide()
     }
 
     override fun hideDataLoading() {
-        planetProgressBar.hide()
+        planetLoadingView.hide()
         planetContentGroup.show()
     }
 
     override fun displayError() {
+        planetLoadingView.state = LoadingStateView.State.ERROR
+        planetLoadingView.show()
         planetImageView.showSnackbar(R.string.error_data_load)
     }
 
@@ -99,8 +121,11 @@ class PlanetActivity : BaseActivity(), PlanetContract.View {
         navigator.openImagePreview(this, imageUrl)
     }
 
-    // endregion
+    override fun openResidentsActivity(planetId: Int, residents: List<Int>) {
+        navigator.openResidentsList(this, planetId)
+    }
 
+    // endregion
 
     private fun setupRecyclerView() {
         planetRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -108,9 +133,5 @@ class PlanetActivity : BaseActivity(), PlanetContract.View {
         planetRecyclerView.adapter = adapter
     }
 
-    private fun setupListeners() {
-        planetImageView.setOnClickListener { presenter.onImageClicked() }
-        planetLikeActionImageButton.setOnClickListener { presenter.onPlanetLikeClicked() }
-        planetViewResidentsButton.setOnClickListener { presenter.onViewResidentsClicked() }
-    }
+
 }

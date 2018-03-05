@@ -2,7 +2,7 @@ package com.landomen.kaminoplanet.presentation.base
 
 import android.content.Context
 import com.landomen.kaminoplanet.presentation.imagepreview.ImagePreviewActivity
-import org.jetbrains.anko.startActivity
+import com.landomen.kaminoplanet.presentation.resident.list.ResidentListActivity
 import javax.inject.Inject
 
 /**
@@ -12,6 +12,10 @@ import javax.inject.Inject
 class Navigator @Inject constructor() {
 
     fun openImagePreview(context: Context, imageUrl: String?) {
-        context.startActivity<ImagePreviewActivity>(ImagePreviewActivity.EXTRA_IMAGE_URL to imageUrl)
+        context.startActivity(ImagePreviewActivity.createIntent(context, imageUrl))
+    }
+
+    fun openResidentsList(context: Context, planetId: Int) {
+        context.startActivity(ResidentListActivity.createIntent(context, planetId))
     }
 }

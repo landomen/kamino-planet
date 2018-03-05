@@ -7,7 +7,7 @@ package com.landomen.kaminoplanet.data.entity.resident
 data class ResidentEntity(val id: Int,
                           val name: String?,
                           val height: Double?,
-                          val mass: Double?,
+                          val mass: String?,
                           val hairColor: String?,
                           val skinColor: String?,
                           val eyeColor: String?,
@@ -17,4 +17,4 @@ data class ResidentEntity(val id: Int,
                           val created: String?,
                           val edited: String?,
                           val imageUrl: String?,
-                          val planetId: Int = 0)
+                          var planetId: Int = 0)

@@ -5,6 +5,6 @@ package com.landomen.kaminoplanet.presentation.common.constants
  * domen.lanisnik@gmail.com
  */
 object AppConstants {
-
+    const val DEFAULT_PLANET_ID = 10
     const val VALUE_MISSING = "-"
 }

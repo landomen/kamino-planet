@@ -20,9 +20,12 @@ class PlanetPresenter @Inject constructor(private val planetRepository: PlanetRe
     private var view: PlanetContract.View? = null
     private val compositeDisposable = CompositeDisposable()
     private var planetEntity: PlanetEntity? = null
+    private var planetId: Int = 0
+
+    // region Contract methods
 
     override fun initialize(planetId: Int) {
-        view?.showDataLoading()
+        this.planetId = planetId
         fetchPlanetDetails(planetId)
     }
 
@@ -41,6 +44,14 @@ class PlanetPresenter @Inject constructor(private val planetRepository: PlanetRe
         view?.openImagePreview(planetEntity?.imageUrl)
     }
 
+    override fun onViewResidentsClicked() {
+        view?.openResidentsActivity(planetEntity?.id!!, planetEntity?.residents ?: listOf())
+    }
+
+    override fun onRetryClicked() {
+        fetchPlanetDetails(planetId)
+    }
+
     override fun onPlanetLikeClicked() {
         view?.showDataLoading()
         view?.togglePlanetLikeButton(false)
@@ -55,9 +66,9 @@ class PlanetPresenter @Inject constructor(private val planetRepository: PlanetRe
                 .addTo(compositeDisposable)
     }
 
-    override fun onViewResidentsClicked() {
-        view?.openResidentsActivity(planetEntity?.residents ?: listOf())
-    }
+    // endregion
+
+    // region Private methods
 
     private fun fetchPlanetDetails(planetId: Int) {
         view?.showDataLoading()
@@ -69,18 +80,6 @@ class PlanetPresenter @Inject constructor(private val planetRepository: PlanetRe
                     fetchPlanetLikeStatus(planetId)
                 }, {
                     onPlanetDetailsFetchError(it)
-                })
-                .addTo(compositeDisposable)
-    }
-
-    private fun fetchPlanetLikeStatus(planetId: Int) {
-        planetRepository.hasUserLikedPlanet(planetId)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ liked ->
-                    view?.togglePlanetLikeButton(!liked)
-                }, {
-                    view?.togglePlanetLikeButton(false)
                 })
                 .addTo(compositeDisposable)
     }
@@ -114,6 +113,18 @@ class PlanetPresenter @Inject constructor(private val planetRepository: PlanetRe
         )
     }
 
+    private fun fetchPlanetLikeStatus(planetId: Int) {
+        planetRepository.hasUserLikedPlanet(planetId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ liked ->
+                    view?.togglePlanetLikeButton(!liked)
+                }, {
+                    view?.togglePlanetLikeButton(false)
+                })
+                .addTo(compositeDisposable)
+    }
+
     private fun onPlanetLikedSuccessfully(newLikesCount: Int) {
         view?.hideDataLoading()
         view?.displayPlanetLikesCount(newLikesCount)
@@ -127,5 +138,7 @@ class PlanetPresenter @Inject constructor(private val planetRepository: PlanetRe
         view?.togglePlanetLikeButton(true)
         view?.displayLikeError()
     }
+
+    // endregion
 
 }

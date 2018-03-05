@@ -3,7 +3,6 @@ package com.landomen.kaminoplanet.data.repository.planet
 import com.landomen.kaminoplanet.data.entity.planet.PlanetEntity
 import com.landomen.kaminoplanet.data.repository.planet.source.PlanetLocalSource
 import com.landomen.kaminoplanet.data.repository.planet.source.PlanetRemoteSource
-import io.reactivex.Flowable
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -14,10 +13,10 @@ import javax.inject.Inject
 class PlanetDataRepository @Inject constructor(private val localSource: PlanetLocalSource,
                                                private val remoteSource: PlanetRemoteSource) : PlanetRepository {
 
-    override fun getPlanet(id: Int): Flowable<PlanetEntity> {
+    override fun getPlanet(id: Int): Single<PlanetEntity> {
         return remoteSource.getPlanetDetails(id)
                 .doOnSuccess { localSource.savePlanet(it) }
-                .toFlowable()
+                .onErrorResumeNext { localSource.getPlanet(id) }
     }
 
     override fun likePlanet(planetId: Int): Single<Int> {

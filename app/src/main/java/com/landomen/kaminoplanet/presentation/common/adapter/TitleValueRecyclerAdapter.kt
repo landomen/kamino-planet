@@ -34,7 +34,7 @@ class TitleValueRecyclerAdapter @Inject constructor() : RecyclerView.Adapter<Tit
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TitleValueViewHolder {
-        return TitleValueViewHolder(parent.inflate(R.layout.recycler_item_detail, false))
+        return TitleValueViewHolder(parent.inflate(R.layout.recycler_item_detail))
     }
 
     override fun onBindViewHolder(holder: TitleValueViewHolder, position: Int) {

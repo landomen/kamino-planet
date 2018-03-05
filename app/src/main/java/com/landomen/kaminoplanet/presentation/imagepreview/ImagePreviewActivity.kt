@@ -1,5 +1,7 @@
 package com.landomen.kaminoplanet.presentation.imagepreview
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import com.bumptech.glide.Glide
@@ -13,6 +15,7 @@ import com.landomen.kaminoplanet.presentation.base.BaseActivity
 import com.landomen.kaminoplanet.util.extensions.showSnackbar
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_image_preview.*
+import org.jetbrains.anko.intentFor
 import javax.inject.Inject
 
 /**
@@ -22,17 +25,28 @@ import javax.inject.Inject
 class ImagePreviewActivity : BaseActivity(), ImagePreviewContract.View {
 
     companion object {
-        const val EXTRA_IMAGE_URL = "ImageUrl"
+        private const val EXTRA_IMAGE_URL = "ImageUrl"
+
+        fun createIntent(context: Context, imageUrl: String?): Intent {
+            return context.intentFor<ImagePreviewActivity>(EXTRA_IMAGE_URL to imageUrl)
+        }
     }
 
-    @Inject
-    lateinit var presenter: ImagePreviewContract.Presenter
+    @Inject lateinit var presenter: ImagePreviewContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_preview)
-        AndroidInjection.inject(this)
+        setupInjection()
         initializePresenter()
+    }
+
+    override fun setupToolbar() = Unit
+
+    override fun setupListeners() = Unit
+
+    override fun setupInjection() {
+        AndroidInjection.inject(this)
     }
 
     override fun initializePresenter() {

@@ -14,7 +14,7 @@ data class ResidentCached(
         val id: Int,
         val name: String?,
         val height: Double?,
-        val mass: Double?,
+        val mass: String?,
         val hairColor: String?,
         val skinColor: String?,
         val eyeColor: String?,

@@ -7,7 +7,7 @@ import android.arch.persistence.room.Query
 import com.landomen.kaminoplanet.data.source.local.base.constants.DatabaseConstants
 import com.landomen.kaminoplanet.data.source.local.planet.model.PlanetCached
 import com.landomen.kaminoplanet.data.source.local.planet.model.PlanetLikeCached
-import io.reactivex.Flowable
+import io.reactivex.Single
 
 /**
  * Created by Domen Lanišnik on 04/03/2018.
@@ -17,7 +17,7 @@ import io.reactivex.Flowable
 interface PlanetDao {
 
     @Query("SELECT * FROM ${DatabaseConstants.TABLE_NAME_PLANETS} WHERE id = :planetId")
-    fun getPlanetById(planetId: Int): Flowable<PlanetCached>
+    fun getPlanetById(planetId: Int): Single<PlanetCached>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPlanet(planet: PlanetCached)

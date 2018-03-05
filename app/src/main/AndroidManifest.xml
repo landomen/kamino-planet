@@ -24,8 +24,11 @@
 
         <activity
             android:name=".presentation.imagepreview.ImagePreviewActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".presentation.resident.list.ResidentListActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

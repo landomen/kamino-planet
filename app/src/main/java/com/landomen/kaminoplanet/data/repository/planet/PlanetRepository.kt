@@ -10,7 +10,7 @@ import io.reactivex.Single
  */
 interface PlanetRepository {
 
-    fun getPlanet(id: Int): Flowable<PlanetEntity>
+    fun getPlanet(id: Int): Single<PlanetEntity>
 
     /**
      * Likes this planet.

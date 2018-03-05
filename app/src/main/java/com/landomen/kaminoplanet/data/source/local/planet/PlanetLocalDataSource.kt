@@ -16,7 +16,7 @@ import javax.inject.Inject
 class PlanetLocalDataSource @Inject constructor(private val database: StarWarsDatabase,
                                                 private val mapper: PlanetLocalMapper) : PlanetLocalSource {
 
-    override fun getPlanet(id: Int): Flowable<PlanetEntity> {
+    override fun getPlanet(id: Int): Single<PlanetEntity> {
         return database.planetDao().getPlanetById(id)
                 .map { mapper.mapFromLocal(it) }
     }

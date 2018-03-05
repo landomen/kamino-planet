@@ -13,5 +13,6 @@
     <!-- Common -->
     <dimen name="recycler_item_padding">10dp</dimen>
     <dimen name="image_small_size">100dp</dimen>
+    <dimen name="image_small_tiny">50dp</dimen>
 
 </resources>

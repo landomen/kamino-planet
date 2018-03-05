@@ -6,6 +6,7 @@ import com.landomen.kaminoplanet.data.source.local.base.db.StarWarsDatabase
 import com.landomen.kaminoplanet.data.source.local.resident.mapper.ResidentLocalMapper
 import io.reactivex.Flowable
 import io.reactivex.Maybe
+import io.reactivex.Single
 import javax.inject.Inject
 
 /**
@@ -15,12 +16,12 @@ import javax.inject.Inject
 class ResidentLocalDataSource @Inject constructor(private val database: StarWarsDatabase,
                                                   private val mapper: ResidentLocalMapper) : ResidentLocalSource {
 
-    override fun getResidents(planetId: Int): Flowable<List<ResidentEntity>> {
+    override fun getResidents(planetId: Int): Single<List<ResidentEntity>> {
         return database.residentDao().getResidents(planetId)
                 .map { it.map { mapper.mapFromLocal(it) } }
     }
 
-    override fun getResident(id: Int): Maybe<ResidentEntity> {
+    override fun getResident(id: Int): Single<ResidentEntity> {
         return database.residentDao().getResidentById(id)
                 .map { mapper.mapFromLocal(it) }
     }

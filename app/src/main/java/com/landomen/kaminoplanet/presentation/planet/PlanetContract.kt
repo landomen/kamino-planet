@@ -23,7 +23,7 @@ interface PlanetContract {
         fun displayLikeError()
 
         fun openImagePreview(imageUrl: String?)
-        fun openResidentsActivity(residents: List<Int>)
+        fun openResidentsActivity(planetId: Int, residents: List<Int>)
     }
 
     interface Presenter : BasePresenter<View> {
@@ -31,6 +31,7 @@ interface PlanetContract {
         fun onImageClicked()
         fun onPlanetLikeClicked()
         fun onViewResidentsClicked()
+        fun onRetryClicked()
     }
 
 }

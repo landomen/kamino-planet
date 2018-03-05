@@ -1,8 +1,6 @@
 package com.landomen.kaminoplanet.data.repository.planet.source
 
 import com.landomen.kaminoplanet.data.entity.planet.PlanetEntity
-import io.reactivex.Completable
-import io.reactivex.Flowable
 import io.reactivex.Single
 
 /**
@@ -11,7 +9,7 @@ import io.reactivex.Single
  */
 interface PlanetLocalSource {
 
-    fun getPlanet(id: Int): Flowable<PlanetEntity>
+    fun getPlanet(id: Int): Single<PlanetEntity>
 
     fun savePlanet(planet: PlanetEntity)
 
